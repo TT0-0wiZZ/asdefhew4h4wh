@@ -11,8 +11,8 @@ SaveInstance.SavePlayer = true
 
 SaveInstance._scriptCache = {}
 
-local encodeBase64 = assert(Krnl.Base64.Encode, "No base64 encoder found")
-local gethiddenproperty = gethiddenproperty or error
+local encodeBase64 = assert(base64_encode, "No base64 encoder found")
+local gethiddenproperty = assert(gethiddenproperty, "No gethiddenproperty found")
 
 local IGNORE_LIST = {} do
     local function Ignore(...)
@@ -31,10 +31,10 @@ local IGNORE_LIST = {} do
     coroutine.resume(coroutine.create(function()
         local chat = game:GetService("Chat")
         Ignore(
-            chat:WaitForChild("ChatModules"),
-            chat:WaitForChild("ClientChatModules"),
-            chat:WaitForChild("ChatServiceRunner"),
-            chat:WaitForChild("ChatScript")
+            chat:WaitForChild("ChatModules", math.huge),
+            chat:WaitForChild("ClientChatModules", math.huge),
+            chat:WaitForChild("ChatServiceRunner", math.huge),
+            chat:WaitForChild("ChatScript", math.huge)
         )
     end))
 end
