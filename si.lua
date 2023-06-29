@@ -1,13 +1,11 @@
--- SaveInstance
--- 0866
--- January 01, 2021
+-- Nanocore SaveInstance
 
 local SaveInstance = {}
 
 SaveInstance.BufferSize = 5632
 SaveInstance.DecompileScripts = false
-SaveInstance.SaveRemovedInstances = true
-SaveInstance.SavePlayer = true
+SaveInstance.SaveRemovedInstances = false
+SaveInstance.SavePlayer = false
 
 SaveInstance._scriptCache = {}
 
@@ -337,7 +335,7 @@ function SaveInstance.Save(parent)
 
     parent = parent or game
 
-    local file = parent:GetFullName() .. "-Save-" .. game.PlaceId do
+    local file = parent:GetFullName() .. "_Nanocore_" .. game.PlaceId do
         if (parent.Parent == game or parent == game) then
             file ..= ".rbxlx"
         else
